@@ -1,0 +1,8 @@
+EJS
+https://ejs.co/
+
+EJS Layouts
+https://www.npmjs.com/package/express-ejs-layouts
+
+Extensão do VS Code para EJS
+EJS language support
