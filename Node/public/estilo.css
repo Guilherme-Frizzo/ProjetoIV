@@ -1,3 +1,23 @@
 body {
-    
+}
+.limitador {
+    max-width: 1000px;
+    margin: 0px auto 0px auto;
+}
+.limiteimg {
+    max-width: 100%;
+}
+.secao1 {
+    background-image: url('/public/foto.jpg');
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    text-align: center;
+    padding: 150px 50px 150px 50px;
+}
+.secao2 {
+    background-color: salmon;
+    color: white;
+    text-align: center;
+    padding: 150px 50px 150px 50px;
 }
