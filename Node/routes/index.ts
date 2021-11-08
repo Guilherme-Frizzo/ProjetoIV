@@ -2,11 +2,16 @@
 
 class IndexRoute {
 	public async index(req: app.Request, res: app.Response) {
-		let nomeDoUsuarioQueVeioDoBanco = "Rafael";
+		let jogadores = [];
+
+		await app.sql.connect(async (sql) => {
+
+			jogadores = await sql.query("SELECT id, nome, clube, valor FROM jogador");
+
+		});
 
 		let opcoes = {
-			usuario: nomeDoUsuarioQueVeioDoBanco,
-			quantidadeDeRepeticoes: 5
+			jogadores: jogadores
 		};
 
 		res.render("index/index", opcoes);

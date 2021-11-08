@@ -1,29 +1,63 @@
 ﻿<div class="secao1 limitador">
-    <h1>Texto Legal!</h1>
+    <h1>Mercado Financeiro dos Jogadores da Série A do Brasileirão</h1>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse erat nulla, mattis et maximus in, molestie at felis.
-        Vestibulum ac eros vel est commodo egestas.
-        Fusce blandit, purus sit amet aliquam tincidunt, nisl mauris euismod nisi, euismod pulvinar dolor metus sit amet orci.
-        Praesent lectus magna, porta a volutpat ac, egestas a dui.
-        Quisque semper, ex eget pretium faucibus, ante ipsum dictum nisl, sed iaculis ante nisi vehicula arcu.
-        Praesent at feugiat dolor, placerat auctor ligula.
-        Cras venenatis viverra nisi eu volutpat. agasga
+        Este site tem o intuito de construir uma tabela com os valores dos 100 jogadores mais valiosos do Brasileirão.
+        O usuario do site podera saber quais os valores, nacionalidade e atual time dos jogadores.
     </p>
 </div>
+
 <div class="secao2 limitador">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Teste</h1>
+                <h1>O site</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse erat nulla, mattis et maximus in, molestie at felis.
+                    O site funciona a partir de um selenium que pega as informações de um outro site e os organiza em tabelas.
+                    A partir dessas tabelas geradas nós construimos este site para apresenta-las aos usuarios de uma maneira facil e dinamica.
                 </p>
             </div>
             <div class="col-sm-6">
-                <img src="/public/foto2.jpg" width="400" class="limiteimg">
+                <img src="/public/brasileirao.jpg" width="400" class="limiteimg">
             </div>
         </div>
     </div>
 </div>
+
+<div class="secao2 limitador">
+    <div class="container-fluid">
+        <table id="tabela" class="table table-flush table-striped table-hover" style="width: 100%;"></table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let jogadores = <%- JSON.stringify(jogadores) %>;
+
+    $("#tabela").DataTable({
+        // Ordena os registros inicialmente pela segunda coluna
+		order: [[2, "desc"]],
+
+        language: {
+			// Traduções
+			// https://datatables.net/plug-ins/i18n/
+			// https://datatables.net/plug-ins/i18n/Portuguese-Brasil.html
+            url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/pt_br.json"
+        },
+
+        // https://datatables.net/reference/option/deferRender
+		deferRender: true,
+
+		// https://datatables.net/reference/option/columns
+		columns: [
+			{ title: "Nome", data: "nome" },
+			{ title: "Clube", data: "clube" },
+			{ title: "Valor (R$)", type: "number", data: {
+                _: function (row, type, set, meta) {
+                    return (row.valor / 1000000).toFixed(1).replace('.', ',') + "M";
+                },
+                sort: "valor"
+            } }
+		],
+
+		data: jogadores
+    });
+</script>

@@ -8,7 +8,7 @@ body {
     max-width: 100%;
 }
 .secao1 {
-    background-image: url('/public/foto.jpg');
+    background-image: url('/public/campo.jpg');
     background-size: cover;
     background-position: center center;
     color: white;
