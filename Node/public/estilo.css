@@ -1,5 +1,4 @@
-body {
-}
+
 .limitador {
     max-width: 1000px;
     margin: 0px auto 0px auto;
@@ -8,7 +7,7 @@ body {
     max-width: 100%;
 }
 .secao1 {
-    background-image: url('/public/campo.jpg');
+    background-image: url('/public/brasileirao.jpg');
     background-size: cover;
     background-position: center center;
     color: white;
@@ -16,8 +15,15 @@ body {
     padding: 150px 50px 150px 50px;
 }
 .secao2 {
-    background-color: salmon;
-    color: white;
+    background-color: green;
+    color: green;
+    text-align: center;
+    padding: 150px 50px 150px 50px;
+}
+
+.teste{
+    background-color: green;
+    color: green;
     text-align: center;
     padding: 150px 50px 150px 50px;
 }
