@@ -14,15 +14,21 @@ from sqlalchemy.orm import Session
 engine = create_engine('mysql+mysqlconnector://root:root@localhost/projetoiv')
 
 def listarJogadores():
-	
-	with Session(engine) as sessao:
+	sessao = Session(engine)
+
+	try:
 		jogadores = sessao.execute(text("SELECT id, nome, clube, valor FROM jogador ORDER BY nome"))
 
 		for (id, nome, clube, valor) in jogadores:
 			print(f'\nid: {id} / nome: {nome} / clube: {clube} / valor: {valor}')
 
+	finally:
+		sessao.close()
+
 def obterJogador(id):
-	with Session(engine) as sessao:
+	sessao = Session(engine)
+
+	try:
 		parametros = {
 			'id': id
 		}
@@ -34,19 +40,23 @@ def obterJogador(id):
 		else:
 			print(f'\nid: {jogador.id} / nome: {jogador.nome} / clube: {jogador.clube} / valor: {jogador.valor}')
 
-def criarJogador(nome, clube, valor):
-	
-	with Session(engine) as sessao:
-		with sessao.begin():
-			jogador = {
-				'nome': nome,
-				'clube': clube,
-				'valor': valor
-			}
+	finally:
+		sessao.close()
 
-			sessao.execute(text("INSERT INTO jogador (nome, clube, valor) VALUES (:nome, :clube, :valor)"), jogador)
+def criarJogador(nome, clube, valor):
+	sessao = Session(engine)
+
+	try:
+		jogador = {
+			'nome': nome,
+			'clube': clube,
+			'valor': valor
+		}
+
+		sessao.execute(text("INSERT INTO jogador (nome, clube, valor) VALUES (:nome, :clube, :valor)"), jogador)
+		sessao.commit()
+	finally:
+		sessao.close()
 		
 if __name__ == '__main__':
-	criarJogador('Teste', 'Teste C', 123.5)
-
-
+	listarJogadores()
