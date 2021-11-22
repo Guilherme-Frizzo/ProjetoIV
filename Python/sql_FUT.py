@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 #	valor float(53) NOT NULL
 # );
 
-engine = create_engine('mysql+mysqlconnector://root:root@localhost/ProjetoIV')
+engine = create_engine('mysql+mysqlconnector://root:root@localhost/projetoiv')
 
 def listarJogadores():
 	
@@ -36,14 +36,15 @@ def obterJogador(id):
 
 def criarJogador(nome, clube, valor):
 	
-	with Session(engine) as sessao, sessao.begin():
-		jogador = {
-			'nome': nome,
-			'clube': clube,
-            'valor': valor
-		}
+	with Session(engine) as sessao:
+		with sessao.begin():
+			jogador = {
+				'nome': nome,
+				'clube': clube,
+				'valor': valor
+			}
 
-		sessao.execute(text("INSERT INTO jogador (nome, clube, valor) VALUES (:nome, :clube, :valor)"), jogador)
+			sessao.execute(text("INSERT INTO jogador (nome, clube, valor) VALUES (:nome, :clube, :valor)"), jogador)
 		
 if __name__ == '__main__':
 	criarJogador('Teste', 'Teste C', 123.5)

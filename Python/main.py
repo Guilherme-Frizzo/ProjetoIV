@@ -21,6 +21,21 @@ def extrair_inteiro(texto):
 driver = webdriver.Chrome()
 driver.get('https://www.transfermarkt.com.br/campeonato-brasileiro-serie-a/marktwerte/wettbewerb/BRA1/pos//detailpos/0/altersklasse/alle/plus/1')
 
+iframe = WebDriverWait(driver, 20).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, "#sp_message_iframe_575849"))
+)
+driver.switch_to.frame(iframe)
+
+time.sleep(2)
+
+aceitar = WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.CSS_SELECTOR, "button.sp_choice_type_ACCEPT_ALL"))
+)
+aceitar.click()
+driver.switch_to.default_content()
+
+time.sleep(2)
+
 dados = []
 
 for i in range(4):
@@ -45,10 +60,11 @@ for i in range(4):
 		})
 
 	if i < 3:
-		link_botao = WebDriverWait(driver, 20).until(
-			EC.element_to_be_clickable((By.CSS_SELECTOR, "li.naechste-seite > a"))
-		)
-		link_botao.click()
+		driver.get('https://www.transfermarkt.com.br/campeonato-brasileiro-serie-a/marktwerte/wettbewerb/BRA1/pos//detailpos/0/altersklasse/alle/plus/1/page/' + str(i + 2) )
+		#link_botao = WebDriverWait(driver, 20).until(
+		#	EC.element_to_be_clickable((By.CSS_SELECTOR, "li.tm-pagination__list-item.tm-pagination__list-item--icon-next-page > a"))
+		#)
+		#link_botao.click()
 		time.sleep(3)
 
 print(dados)
