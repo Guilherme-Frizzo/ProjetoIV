@@ -6,24 +6,51 @@
 .limiteimg {
     max-width: 100%;
 }
-.secao1 {
-    background-image: url('/public/brasileirao.jpg');
-    background-size: cover;
-    background-position: center center;
-    color: white;
-    text-align: center;
-    padding: 150px 50px 150px 50px;
-}
-.secao2 {
-    background-color: red;
-    color: green;
-    text-align: center;
-    padding: 150px 50px 150px 50px;
+
+.textinho{
+    font-family: Helvetica;
+    color: #FFF;
 }
 
-.teste{
-    background-color: green;
-    color: green;
+.secao1 {
+    background-image: url('/public/fundo.jpg');
+    background-size: cover;
+    background-position: center center;
     text-align: center;
     padding: 150px 50px 150px 50px;
+    font-family: Helvetica;
+    color: #FFF;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #000;
+}
+.secao2 {
+    color: white;
+    text-align: center;
+    padding: 100px 50px 100px 50px;
+    background-image: url('/public/fundoPreto.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.titulo{
+    color: #FFF;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #000;
+    font-size: 25px;
+}
+
+.textinho2{
+    color: #FFF;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #000;
+    font-size: 20px;
+}
+
+secao3{
+    color: white;
+    text-align: center;
+    padding: 100px 50px 100px 50px;
+    background-image: url('/public/fundoPreto.jpg');
+    background-size: cover;
+    background-position: center center;
 }
